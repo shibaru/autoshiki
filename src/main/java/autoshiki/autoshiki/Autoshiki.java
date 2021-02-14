@@ -78,9 +78,11 @@ public final class Autoshiki extends JavaPlugin {
                 }
                 if(me1 >= me2){
                     Bukkit.broadcastMessage(playerlist.get(0)+"のかち！");
+                    return true;
                 }
                 if(me2 >= me1){
                     Bukkit.broadcastMessage(playerlist.get(1)+"のかち！");
+                    return true;
                 }
             }
         }
