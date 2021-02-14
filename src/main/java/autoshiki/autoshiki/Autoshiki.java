@@ -8,12 +8,16 @@ import java.util.Random;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 
 public final class Autoshiki extends JavaPlugin {
 
 
     Random autoR;
     int number;
+    int me1;
+    int me2;
     boolean bosyu = false;
     List<Player> playerlist;
 
@@ -24,6 +28,9 @@ public final class Autoshiki extends JavaPlugin {
         getLogger().info("自動式システム起動");
         autoR = new Random();
         number = 0;
+        me1 = 0;
+        me2 = 0;
+        playerlist = new ArrayList<>();
 
     }
 
@@ -51,11 +58,31 @@ public final class Autoshiki extends JavaPlugin {
                     sender.sendMessage("現在募集されています");
                     return true;
                 }
-                Bukkit.broadcastMessage(sender.getName() + "が" + args[1] + "円6式を募集しています。/shiki join で参加");
-                playerlist.add(p.getName());
+                Bukkit.broadcastMessage(sender.getName() + "が6式を募集しています。/shiki join で参加");
+                playerlist.add(p.getPlayer());
                 bosyu = true;
+                return true;
             }
-            Bukkit.broadcastMessage(sender.getName()+"は6面さいころを振って"+(autoR.nextInt(6)+1)+"を出した");
+            if (args[0].equals("join")){
+                if (!bosyu){
+                    sender.sendMessage("現在募集されていません");
+                    return true;
+                }
+                Bukkit.broadcastMessage(sender.getName() + "が6式に参加しました！");
+                playerlist.add(p.getPlayer());
+                while(me1 == me2){
+                    int me1 = autoR.nextInt(6)+1;
+                    Bukkit.broadcastMessage(playerlist.get(0)+"は6面さいころを振って"+ me1 +"を出した");
+                    int me2 = autoR.nextInt(6)+1;
+                    Bukkit.broadcastMessage(playerlist.get(1)+"は6面さいころを振って"+ me2 +"を出した");
+                }
+                if(me1 >= me2){
+                    Bukkit.broadcastMessage(playerlist.get(0)+"のかち！");
+                }
+                if(me2 >= me1){
+                    Bukkit.broadcastMessage(playerlist.get(1)+"のかち！");
+                }
+            }
         }
         return true;
 
