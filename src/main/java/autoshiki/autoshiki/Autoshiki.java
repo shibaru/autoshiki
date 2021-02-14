@@ -71,9 +71,9 @@ public final class Autoshiki extends JavaPlugin {
                 Bukkit.broadcastMessage(sender.getName() + "が6式に参加しました！");
                 playerlist.add(p.getPlayer());
                 while(me1 == me2){
-                    int me1 = autoR.nextInt(6)+1;
+                    me1 = autoR.nextInt(6)+1;
                     Bukkit.broadcastMessage(playerlist.get(0)+"は6面さいころを振って"+ me1 +"を出した");
-                    int me2 = autoR.nextInt(6)+1;
+                    me2 = autoR.nextInt(6)+1;
                     Bukkit.broadcastMessage(playerlist.get(1)+"は6面さいころを振って"+ me2 +"を出した");
                 }
                 if(me1 >= me2){
