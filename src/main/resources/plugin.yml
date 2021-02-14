@@ -1,0 +1,8 @@
+name: Autoshiki
+version: ${project.version}
+main: autoshiki.autoshiki.Autoshiki
+api-version: 1.16
+commands:
+  shiki:
+    usage: /<command>
+    default: op
